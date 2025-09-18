@@ -1,0 +1,172 @@
+% !TeX root = Main.tex
+\documentclass[9pt,conference]{IEEEtran}
+\usepackage{amssymb,amsthm,amsmath,array}
+\usepackage{graphicx}
+%\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{xspace}
+\usepackage[sort&compress, numbers]{natbib}
+\usepackage{stmaryrd}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{subcaption}
+\usepackage{caption}    % para legendas personalizadas
+\usepackage{verbatim}
+\IEEEoverridecommandlockouts
+
+
+\begin{document}
+    
+    \title{2° Laboratório de EES-42 - Princípio da Separação: Realimentação do Estado Observado Aumentado com 
+Ação Integral para Controle em Tempo Discreto de Planta Instável}
+
+    \author{
+        \IEEEauthorblockN{
+            Luis Antonio Marin, 
+            Samuel Afonso de Souza Cavalcante and 
+            Antônio Fernando Vitoriano Martines Penna%\IEEEauthorrefmark{1} % <-- Marca
+        }
+        %\IEEEauthorblockA{
+        %    \IEEEauthorrefmark{1} Não participou do relatório, mas ajudou na confecção das atividades de pré-lab.
+        %}
+        
+        % --- FIM DA MODIFICAÇÃO ---
+    }
+    
+    \maketitle
+    
+    
+\textbf{Resumo - %Determinamos a transformação de similaridade, obtendo uma realização no espaço de estados distinta para a planta instável. Avaliamos o modelo para diferentes valores de banda passante, visando atender aos critérios de desempenho: \emph{overshoot} menor que $5\%$, tempo de estabilização abaixo de $1,5$s e sinal de controle inferior a 14V. Para a planta não perturbada, a banda passante de 4 rad/s foi suficiente. Em seguida, realizamos análise de robustez, perturbando o modelo pela multiplicação das matrizes por escalares entre 80\% e 120\%. Para garantir estabilidade, evitar saturação e atender aos critérios de desempenho, a banda passante encontrada foi de 10 rad/s, com distância mínima ao ponto crítico $d_\text{min}=0.866$.
+}
+
+
+%\textbf{Palavras-chave}: PALAVRAS-CHAVE.
+
+
+\section{Procedimentos e Resultados}
+
+%A planta instável, implementada com componentes analógicos, é modelada por:
+%\begin{equation}
+%G(s) = \frac{1000}{(s + 10)(s^2-s+100,25)}\mbox{,}
+%\end{equation}
+%com realização no espaço de estados $\{A',B',C',0\}$, obtida via matriz de transformação de similaridade \emph{T} determinada pelo grupo. 
+%A fim de obter erro de rastreio em regime estacionário \emph{nulo} com referência degrau, usamos ação integral no controle da planta. Projetamos o controlador digital sintonizando a banda passante $\omega_b$, alocando os polos que minimizam o critério ITAE \cite{itae},
+% com o intuito de atender aos critérios de desempenho estabelecidos: \emph{overshoot} inferior a $5\%$ e tempo de estabilização menor que $1,5$s. Analisamos o modelo utilizando \emph{script} fornecido por \cite{waldmann2025lab1} e simulação do modelo com perturbações.
+
+\subsection{Tarefa 1}
+
+%Adotamos realização no espaço de estados da função de transferência de ordem $n=3$ por meio de matriz de transformação de similaridade:
+%\begin{equation}
+%T =
+%\begin{pmatrix}
+%0 & 0 & 1,6464\\
+%-0,7071 & 0 & 0,8222\\
+%0 & -0,7071 & 0,7831
+%\end{pmatrix}
+%\mbox{,}
+%\end{equation}
+%
+%Obtida com os autovalores da matriz $A$ da realização $\{A,B,C,0\}$. Analisamos diversos valores de banda passante, selecionando inicialmente, $\omega_b=4$ rad/s, com banda passante inferior obtida $\omega_{b,obtida}=3,59 $ rad/s. O \emph{overshoot} encontrado foi de $1,9196\%$, com tempo de acomodação (critério $2\%$) de $1,1281$ s e pico do sinal de controle de $5,1038 $ V.O tempo de acomodação das variáveis de estado foram inferiores a $2$ s, e valores com magnitude inferior a $4 $ V. %Os vetor aumentado de ganhos obtido foi $K_{aug}= \begin{bmatrix} -0.2577 & 0.5570 & -0.4160 & -0.2560\end{bmatrix}$.
+
+\subsection{Tarefa 2}
+
+%Perturbamos as matrizes do modelo da planta multiplicando cada uma delas por um fator escalar arbitrário entre $80\%$ e $120\%$ de seus valores originais e condições iniciais das variáveis de estado entre $0$ e $3$ V, e realizamos as simulações utilizando o \emph{script} fornecido. Observamos, entretanto, que para $\omega_b = 4$ rad/s tais perturbações resultaram em instabilidade na saída, conforme ilustrado na Figura \ref{fig:problema4rad}.
+%
+%\begin{figure}[h!]
+%    \centering
+%        \includegraphics[width=0.6\columnwidth]{Lab1s2/fig/4radproblema.png}
+%        \caption{Sinal de Saída da Planta com Perturbações - banda passante $\omega_b=4rad/s$}
+%        \label{fig:problema4rad}
+%\end{figure}
+%
+%Em seguida, determinamos empiricamente uma banda passante $\omega_b$ que não exigisse maior magnitude do sinal de controle a ponto de saturar os amplificadores operacionais, mas que ainda atendesse aos critérios de desempenho estabelecidos. O valor obtido foi $\omega_b = 10$ rad/s, cujas saídas são apresentadas na Figura \ref{fig:10rads}.
+%
+%\begin{figure}[h!]
+%    \centering
+%    \begin{subfigure}{0.6\columnwidth}
+%        \centering
+%        \includegraphics[width=\textwidth]{Lab1s2/fig/saida10rads.png}
+%        \caption{Sinal de Saída}
+%        \label{fig:10radsa}
+%    \end{subfigure}
+%    % \hfill
+%    \begin{subfigure}{0.6\columnwidth}
+%        \centering
+%        \includegraphics[width=\textwidth]{Lab1s2/fig/controle10rads.png}
+%        \caption{Sinal de Controle}
+%        \label{fig:10radsb}
+%    \end{subfigure}
+%    \caption{Sinais de Saída da Planta com Perturbações - banda passante $\omega_b=10rad/s$}
+%    \label{fig:10rads}
+%\end{figure}
+%
+%Para a resposta simulada sem perturbações e banda passante selecionada $\omega_b = 10$ rad/s, encontramos \emph{overshoot} de $1,912\%$, com tempo de acomodação (critério $2\%$) inferior a $0,5$ s e pico do sinal de controle de $5,426$ V. O tempo de acomodação das variáveis de estado foram inferiores a $1,5$ s, e valores com magnitude inferior a $4,2$ V. Em regime temos $x_I(\infty)=1,35$, $u(\infty)=5,0125$ e $\textbf{x}(\infty)=[3,1866 -3,6995 3,0445]^T$. Esse valores atendem a análise teórica, onde
+%\[
+%x_I(\infty) = \frac{1}{K_I} \big( u(\infty) + Kx(\infty) \big)\mbox{,}
+%\]
+%com $K = \begin{bmatrix} 1.8509 & -0.4422 & 0.3132 \end{bmatrix},$ e $Ki=-10$.
+%
+\subsection{Tarefa 3}
+
+%Utilizando \emph{script} fornecido pelo professor, obtivemos a função de transferência da malha aberta $L(s)$. Encontramos assim os polos de $1+L(s)$, dos quais dois estão no semiplano direito do plano-s. No diagrama de Nyquist - exposto na Figura \ref{fig:nyquist} - $L(s)$ dá 2 voltas no sentido \emph{anti-horário} em torno do ponto crítico.
+%
+%Verificamos a estabilidade em malha fechada do sistema mediante critério de Nyquist, onde
+%\begin{equation}
+%N^{\curvearrowright}=Z-P\mbox{,}
+%\end{equation}
+%em que o número de voltas de $L(s)$ em torno do ponto crítico no sentido horário $N^{\curvearrowright}=-2$ e $Z=0$ e $P=2$.
+%
+%\begin{figure}[h!]
+%    \centering
+%    \begin{subfigure}{0.6\columnwidth}
+%        \centering
+%        \includegraphics[width=\textwidth]{Lab1s2/fig/nyquist3.png}
+%        \caption{Diagrama de Nyquist}
+%        \label{fig:nyquist}
+%    \end{subfigure}
+%    % \hfill
+%    \begin{subfigure}{0.6\columnwidth}
+%        \centering
+%        \includegraphics[width=\textwidth]{Lab1s2/fig/bode3.png}
+%        \caption{Diagrama de Bode}
+%        \label{fig:bode}
+%    \end{subfigure}
+%    \caption{Diagramas para Planta com $\omega_b=10rad/s$}
+%    \label{fig:diagramas}
+%\end{figure}
+%
+%Geramos o diagrama de Bode, disponível na Figura \ref{fig:bode}, onde a margem de ganho encontrada foi $-15,8$ dB em $10,8$ rad/s e margem de fase $53$° em $17,8$ rad/s. A margem de ganho e a de fase indicam quanto o ganho ou a fase podem variar, mantendo o outro fixo, antes de mudar o número de envolvimentos do ponto crítico no diagrama de Nyquist. Uma margem de ganho negativa não significa instabilidade, mas apenas que é necessário reduzir o ganho para alterar o número de envolvimentos.
+%
+%Geramos também o diagrama de Bode da magnitude da função de sensibilidade $|S(j\omega)|$ e sua inversa $D(j\omega)=1/|S(j\omega)|=|1+L(j\omega)|$, expostos na Figura \ref{fig:sens}. $|D(j\omega)|$, por sua vez, representa a distância do ponto crítico a $L(j\omega)$ no diagrama de Nyquist. A distância mínima encontrada foi de $d_{min}=0.886$.
+%
+%\begin{figure}[h!]
+%    \centering
+%    \begin{subfigure}{0.6\columnwidth}
+%        \centering
+%        \includegraphics[width=\textwidth]{Lab1s2/fig/sensibilidade.png}
+%        \caption{Diagrama Magnitude da Função de Sensibilidade}
+%        \label{fig:sensibilidade}
+%    \end{subfigure}
+%    % \hfill
+%    \begin{subfigure}{0.6\columnwidth}
+%        \centering
+%        \includegraphics[width=\textwidth]{Lab1s2/fig/distancia.png}
+%        \caption{Diagrama Função Distância}
+%        \label{fig:distancia}
+%    \end{subfigure}
+%    \caption{Diagramas de Bode da Magnitude da Função de Sensibilidade e Distância ao Ponto Crítico}
+%    \label{fig:sens}
+%\end{figure}
+%
+%Diferente das margens de fase e ganho, a análise de $|D(j\omega)|$ não mantém nenhum parâmetro fixo. A incerteza pode ser modelada como um disco de raio $\delta(j\omega)$ em torno de cada ponto de $L(j\omega)$. A estabilidade é robusta se esses discos forem pequenos o bastante para não alterar o número de envolvimentos do ponto crítico no diagrama de Nyquist. Em sistemas com ressonâncias próximas ao ponto crítico, essa robustez é reduzida.
+%
+\section{Conclusões}
+%Concluímos que a matriz de transformação de similaridade \emph{T} resultou em uma realização no espaço de estados com a mesma função de transferência e valor da integral de erro de rastreio do modelo original. O controlador, com polos alocados pelo critério ITAE e banda passante definida, atendeu aos critérios de desempenho, mantendo o pico do sinal de controle abaixo do limite de saturação, com ampla margem de segurança. A robustez foi avaliada pela distância ao ponto crítico, garantindo comportamento adequado frente a perturbações no intervalo considerado e equilíbrio da excursão do sinal de controle. Esse critério mostrou-se superior à análise de margem de ganho e de fase.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{Referencias}
+
+\end{document}
+%\printbibliography
