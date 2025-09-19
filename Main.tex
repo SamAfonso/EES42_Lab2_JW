@@ -37,7 +37,8 @@ Ação Integral para Controle em Tempo Discreto de Planta Instável}
     \maketitle
     
     
-\textbf{Resumo - %Determinamos a transformação de similaridade, obtendo uma realização no espaço de estados distinta para a planta instável. Avaliamos o modelo para diferentes valores de banda passante, visando atender aos critérios de desempenho: \emph{overshoot} menor que $5\%$, tempo de estabilização abaixo de $1,5$s e sinal de controle inferior a 14V. Para a planta não perturbada, a banda passante de 4 rad/s foi suficiente. Em seguida, realizamos análise de robustez, perturbando o modelo pela multiplicação das matrizes por escalares entre 80\% e 120\%. Para garantir estabilidade, evitar saturação e atender aos critérios de desempenho, a banda passante encontrada foi de 10 rad/s, com distância mínima ao ponto crítico $d_\text{min}=0.866$.
+\textbf{Resumo - Este laboratório visa utilizar-se do conceito de Princípio da Separação para controlar a planta instável em malha aberta do laboratório anterior.
+%Determinamos a transformação de similaridade, obtendo uma realização no espaço de estados distinta para a planta instável. Avaliamos o modelo para diferentes valores de banda passante, visando atender aos critérios de desempenho: \emph{overshoot} menor que $5\%$, tempo de estabilização abaixo de $1,5$s e sinal de controle inferior a 14V. Para a planta não perturbada, a banda passante de 4 rad/s foi suficiente. Em seguida, realizamos análise de robustez, perturbando o modelo pela multiplicação das matrizes por escalares entre 80\% e 120\%. Para garantir estabilidade, evitar saturação e atender aos critérios de desempenho, a banda passante encontrada foi de 10 rad/s, com distância mínima ao ponto crítico $d_\text{min}=0.866$.
 }
 
 
@@ -45,6 +46,17 @@ Ação Integral para Controle em Tempo Discreto de Planta Instável}
 
 
 \section{Procedimentos e Resultados}
+
+Lembra-se que a planta instável implementada com componentes analógicos é modelada por:
+
+\begin{equation}
+    G(s) = \frac{1000}{(s+10)(s-0,5+10j)(s-0,5-10j)}
+\end{equation}
+
+
+
+
+
 
 %A planta instável, implementada com componentes analógicos, é modelada por:
 %\begin{equation}
